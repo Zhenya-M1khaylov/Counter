@@ -1,20 +1,19 @@
 import React, {useEffect, useState} from 'react';
-import './App.css';
+import c from './App.module.css'
 import {Counter} from './Components/Counter';
 import {Setter} from './Components/Setter';
 
 function App() {
-    // for counter
-    const [counterValue, setCounterValue] = useState<number>(0) // число счетчика
-    const [startValue, setStartValue] = useState<number>(0) // начальное значение
-    const [isDisabledInc, setIsDisabledInc] = useState(false)  // делает кнопку Inc задизейбленой
-    const [isDisabledReset, setIsDisabledReset] = useState(false) // делает кнопку Reset задизейбленой
 
-    // for setter
-    const [isDisabledSet, setIsDisabledSet] = useState(false) // делать кнопку Set задизейбленой
-    const [maxValue, setMaxValue] = useState<number>(10) // максимальное значение
-    const [changedInput, setChangedInput] = useState(false) //если ввели новые значения в инпут
-    const [errorInput, setErrorInput] = useState(false) //если ввели некорректные числа
+    const [counterValue, setCounterValue] = useState<number>(0) // number from counter
+    const [startValue, setStartValue] = useState<number>(0) // start value
+    const [isDisabledInc, setIsDisabledInc] = useState(false)  // button INC disabled
+    const [isDisabledReset, setIsDisabledReset] = useState(false) // button RESET disabled
+    const [isDisabledSet, setIsDisabledSet] = useState(false) // button SET disabled
+    const [maxValue, setMaxValue] = useState<number>(10) //  max value
+    const [errorInput, setErrorInput] = useState(false) // entered incorrect numbers
+    const [changedInput, setChangedInput] = useState(false) // if input was changed
+
 
     useEffect(() => {
         const localStorageStartValue = localStorage.getItem('startValue')
@@ -54,27 +53,35 @@ function App() {
 
     return (
         <div className="App">
-            <Counter
-                counterValue={counterValue}
-                setCounterValue={setCounterValue}
-                startValue={startValue}
-                isDisabledInc={isDisabledInc}
-                setIsDisabledInc={setIsDisabledInc}
-                isDisabledReset={isDisabledReset}
-            />
-            <Setter
-                startValue={startValue}
-                setStartValue={setStartValue}
-                maxValue={maxValue}
-                setMaxValue={setMaxValue}
-                setCounterValue={setCounterValue}
-                changedInput={changedInput}
-                setChangedInput={setChangedInput}
-                isDisabledSet={isDisabledSet}
-                setIsDisabledSet={setIsDisabledSet}
-                errorInput={errorInput}
-                setErrorInput={setErrorInput}
-            />
+            <div className={c.container}>
+                <Counter
+                    counterValue={counterValue}
+                    setCounterValue={setCounterValue}
+                    startValue={startValue}
+                    isDisabledInc={isDisabledInc}
+                    setIsDisabledInc={setIsDisabledInc}
+                    isDisabledReset={isDisabledReset}
+                    changedInput={changedInput}
+                    setChangedInput={setChangedInput}
+                    errorInput={errorInput}
+                    setErrorInput={setErrorInput}
+                    maxValue={maxValue}
+                    setIsDisabledReset={setIsDisabledReset}
+                />
+                <Setter
+                    startValue={startValue}
+                    setStartValue={setStartValue}
+                    maxValue={maxValue}
+                    setMaxValue={setMaxValue}
+                    setCounterValue={setCounterValue}
+                    changedInput={changedInput}
+                    setChangedInput={setChangedInput}
+                    isDisabledSet={isDisabledSet}
+                    setIsDisabledSet={setIsDisabledSet}
+                    errorInput={errorInput}
+                    setErrorInput={setErrorInput}
+                />
+            </div>
         </div>
     );
 }

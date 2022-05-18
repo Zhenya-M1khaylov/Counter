@@ -1,10 +1,11 @@
 import React from 'react';
-import s from '../App.module.css'
+
 
 type UniversalButtonPropsType = {
     name: string
     callBack: () => void
     disabled: boolean
+    buttonStyle?: string
 }
 
 const UniversalButton = (props: UniversalButtonPropsType) => {
@@ -15,7 +16,7 @@ const UniversalButton = (props: UniversalButtonPropsType) => {
 
     return (
         <span>
-            <button disabled={props.disabled} onClick={onClickHandler} className={s.button}>{props.name}</button>
+            <button disabled={props.disabled} onClick={onClickHandler} className={props.buttonStyle}>{props.name}</button>
         </span>
     );
 };
